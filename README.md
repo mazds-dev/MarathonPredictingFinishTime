@@ -168,7 +168,7 @@ Even so, the model provides **clear and interpretable insights** into how age, g
 
 # Author
 
-Developed by **Marvin Adorian Zanchi Santos** |
+Developed by **Marvin Adorian Zanchi Santos**  
 BSc in Software Development, 4th-year student at South East Technological University (SETU), Carlow Campus  
 
 ---
