@@ -1,4 +1,4 @@
-# Marathon Predicting Finish Time 
+# Marathon Predicting Finish Time (Linear Regression)
 
 ### Student Details
 - **Name:** Marvin Adorian Zanchi dos Santos  
@@ -10,102 +10,163 @@
 
 ---
 
-## Project Overview
-This project, titled **"Marathon Predicting Finish Time"**, applies a **Linear Regression** model to predict marathon completion times based on runners’ demographic and event data.  
+# Project Overview
 
-The dataset, sourced from **Kaggle (2023 Marathon Results)**, contains over 420,000 entries from 600+ races worldwide.  
-Each record includes the runner’s **age**, **gender**, **race name**, and **finish time** (in seconds).  
+This project applies a **Linear Regression** model to predict marathon finish times using runners’ demographic and event-related data.
 
-The objective is to analyze how these factors influence marathon performance and to build a predictive model that estimates a runner’s expected finish time.
+The dataset, sourced from **Kaggle (2023 Marathon Results)**, contains over **420,000** entries from **600+ marathon events** across the United States.
 
----
+Each record includes:
 
-## Project Objectives
-1. Clean and prepare the marathon dataset for machine learning.  
-2. Explore relationships between age, gender, race, and finish times using data visualization.  
-3. Train and evaluate a **Linear Regression model** to predict finish time.  
-4. Interpret the model’s coefficients to identify which variables have the most influence on performance.  
-5. Present results, insights, and recommendations for future work.
+* Age
+* Gender
+* Race name
+* Finish time (seconds)
+
+The aim is to analyze how these variables influence marathon performance and develop a model that estimates a runner’s expected finish time.
 
 ---
 
-## Dataset
-**Source:** [Kaggle – 2023 Marathon Results](https://www.kaggle.com/datasets/runningwithrock/2023-marathon-results?resource=download&select=Results.csv)  
-**Description:**  
-- ~429,000 marathon results  
-- Columns: Name, Race, Year, Gender, Age, Finish (seconds), Age Bracket  
-- Year = 2023 (constant)  
-- Age -1 indicates unknown (removed during cleaning)
+# Project Objectives
 
-**Note:** The dataset is too large to attach to this submission.  
-You can download it directly from the Kaggle link above.
+1. Clean and prepare a large, real-world marathon dataset for machine learning.
+2. Explore relationships between age, gender, race, and finish time.
+3. Train and evaluate a **Linear Regression** model.
+4. Interpret the model coefficients to understand what drives performance.
+5. Summarize insights and propose future directions for improvement.
 
 ---
 
-## Tools and Technologies
-- **Language:** Python  
-- **Libraries:** pandas, numpy, matplotlib, seaborn, scikit-learn  
-- **Environment:** Jupyter Notebook / VS Code  
-- **Version Control:** GitHub  
+# Dataset
+
+**Source:**
+[Kaggle – 2023 Marathon Results](https://www.kaggle.com/datasets/runningwithrock/2023-marathon-results?resource=download&select=Results.csv)
+
+**Dataset Summary**
+
+* ~429,000 marathon results
+* Columns: Name, Race, Year, Gender, Age, Finish, Age Bracket
+* Age = -1 indicates unknown (removed during cleaning)
+* All events occurred in **2023**
+
+**Note:**
+Due to its size, the dataset is **not included** in this repository.
+Download it from Kaggle and place it inside a folder named `/data`.
 
 ---
 
-## Methodology
-1. **Data Cleaning:**  
-   - Removed rows with missing or invalid values (Age = -1, unknown Gender).  
-   - Encoded categorical features (Gender → numeric, Race → one-hot encoding).  
-2. **EDA (Exploratory Data Analysis):**  
-   - Visualized distributions (Age, Finish time).  
-   - Analyzed correlations (Age vs Finish, Gender vs Finish).  
-3. **Model Training:**  
-   - Split dataset 80/20 for training and testing.  
-   - Applied `LinearRegression` model from `scikit-learn`.  
-4. **Evaluation:**  
-   - R² = 0.3588  
-   - MAE = 2,673.62 seconds (~44.6 minutes)  
-   - RMSE = 3,391.50 seconds (~56.5 minutes)  
-5. **Interpretation:**  
-   - Older runners generally have longer finish times.  
-   - Male runners finish slightly faster on average.  
-   - Certain races (e.g., trail marathons) show longer finish times due to difficulty.
+# Tools & Technologies
+
+* **Language:** Python
+* **Libraries:** pandas, numpy, matplotlib, seaborn, scikit-learn
+* **Environment:** Jupyter Notebook / Visual Studio Code
+* **Version Control:** GitHub
 
 ---
 
-## Key Visualizations
-- Distribution of marathon finish times  
-- Age vs Finish Time (with regression line)  
-- Actual vs Predicted Finish Time (with perfect-fit red line)  
-- Coefficient analysis showing the most influential races and demographics  
+# Methodology
+
+### **1. Data Cleaning**
+
+* Removed invalid ages (<16 or >90, or age = -1)
+* Kept only Male/Female categories
+* Encoded Gender numerically (Male = 1, Female = 0)
+* Removed columns not required for modelling: Name, Age Bracket, Year
+* Removed extreme finish times (> 20,000 seconds) to avoid ultra-marathon outliers
+
+### **2. Exploratory Data Analysis (EDA)**
+
+* Visualized distribution of finish times (in hours)
+* Analysed age distribution
+* Explored how Age, Gender, and Race relate to finish time
+* Created a correlation heatmap
+
+### **3. Feature Engineering**
+
+* Selected features: **Age**, **Gender**, **Race**
+* Applied one-hot encoding to Race
+* Split data into training and testing (80/20)
+
+### **4. Model Training**
+
+* Trained a Linear Regression model using scikit-learn
+* Predicted `Finish` (seconds)
+
+### **5. Evaluation**
+
+- **R²:** 0.186  
+- **MAE:** 32.29 minutes  
+- **RMSE:** 39.16 minutes  
+
+### **6. Interpretation**
+
+* **Age effect:** +34.7 seconds/year (~0.58 minutes per year)
+* **Gender effect:** Male runners finish ~19 minutes faster on average
+* **Race:** Significant impact due to course difficulty, terrain, and climate
 
 ---
 
-## Results Summary
-The model explains about **36% of the variance in marathon finish times**, 
-indicating that age, gender, and race are significant but not exhaustive predictors.  
-Further improvements could involve additional variables such as pace, training load, or environmental conditions.
+# Key Visualisations
+
+* Distribution of finish times
+* Distribution of runner ages
+* Age vs Finish scatterplot
+* Gender vs Finish time boxplot
+* Actual vs Predicted scatterplot with perfect-fit line
+* Feature coefficient ranking
 
 ---
 
-## How to Run This Notebook
+# Results Summary
+
+The linear regression model explains around **19%** of the variance in marathon finish times.
+This is expected given that marathon performance depends on many additional factors:
+
+* training load
+* pacing strategy
+* athlete experience
+* physiological variables (VO₂ max)
+* course elevation
+* weather conditions
+
+Even so, the model provides **clear and interpretable insights** into how age, gender, and race influence performance.
+
+---
+
+# How to Run the Notebook
+
 1. Install dependencies:
-2. Place the dataset file (`Results.csv`) inside a folder called `/data`  
-inside the same directory as the notebook.
-3. Open and run the notebook file:  
-`notebooks/marathon_predicting_finish_time.ipynb`
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+2. Place the dataset file here:
+
+   ```
+   /data/Results.csv
+   ```
+3. Open and run the notebook:
+
+   ```
+   notebook/marathon_predicting_finish_time.ipynb
+   ```
 
 ---
 
-## References
-- Dataset: [Kaggle – 2023 Marathon Results](https://www.kaggle.com/datasets/runningwithrock/2023-marathon-results?resource=download&select=Results.csv)  
-- Python Libraries: [pandas](https://pandas.pydata.org/), [scikit-learn](https://scikit-learn.org/), [matplotlib](https://matplotlib.org/), [seaborn](https://seaborn.pydata.org/)  
-- Course Material: Data Science & Machine Learning 1 (College Module)  
-- YouTube Tutorials: Various videos on data cleaning, exploratory data analysis, and linear regression in Python (used for learning best practices).  
-- ChatGPT (OpenAI, 2025): Used to assist with project structure, code explanations, and documentation formatting.
+# References
+
+* Dataset: Kaggle – 2023 Marathon Results
+* Python Libraries: pandas, numpy, scikit-learn, matplotlib, seaborn
+* Course Content: Data Science & Machine Learning 1
+* YouTube Tutorials: Exploratory data analysis & regression modelling
+* ChatGPT (OpenAI, 2025): Assisted with documentation, structure, and formatting
 
 ---
 
-## Author
-Developed by Marvin Adorian Zanchi Santos  
-BSc Software Development — Year 4  
-South East Technological University - Carlow
+# Author
 
+Developed by Marvin Adorian Zanchi Santos
+BSc Software Development — Year 4
+South East Technological University — Carlow
+
+---

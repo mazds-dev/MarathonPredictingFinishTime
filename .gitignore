@@ -1,13 +1,44 @@
+# ======================
+# Python / Jupyter Project
+# ======================
+
 # Ignore dataset files
 data/*.csv
 data/*.zip
+data/*.parquet
+data/*.json
 
 # Ignore Jupyter checkpoints
 .ipynb_checkpoints/
 
-# Ignore Enviroment
+# Ignore Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore virtual environment
 .venv/
+env/
+venv/
 
 # Ignore system files
 .DS_Store
 Thumbs.db
+
+# Ignore model artifacts
+*.pkl
+*.sav
+*.h5
+
+# Ignore log files
+*.log
+
+# Ignore temporary files
+*.tmp
+
+# Ignore VSCode settings
+.vscode/
+
+# Ignore images if you don't want them in repo (optional)
+# notebook/*.png
