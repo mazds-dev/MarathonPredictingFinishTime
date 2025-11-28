@@ -27,7 +27,6 @@ venv/
 Thumbs.db
 
 # Ignore model artifacts
-*.pkl
 *.sav
 *.h5
 
